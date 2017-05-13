@@ -15,7 +15,7 @@ app.controller('reporteAlumnosClase', function($scope, $rootScope, WebApiFactory
         dateFormat: 'dd/mm/yy'
     });
     var columns = [
-                    {"data": "codigoLink"},
+                    {"data": "alumno.codigo"},
                     {"data": "alumno.nombre"},
                     {"data": "alumno.correo"},
                     {"data": "alumno.telefono"}];
