@@ -14,7 +14,7 @@ app.factory('WebApiFactory', function ($http) {
             
             dataType: 'jsonp'
         }).then(function (response) {
-            return response.data.Orders;
+            return response.data;
         });
     };
     

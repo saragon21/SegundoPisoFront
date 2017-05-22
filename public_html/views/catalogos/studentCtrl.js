@@ -5,11 +5,6 @@
  */
 
 app.controller('studentsCtrl', function($scope, $http, $rootScope, $timeout, WebApiFactory) {
-    $(document).ready(function() {
-        $('#alumnos').DataTable();
-    });
-    
-    
     $rootScope.showMenu = true;
     $scope.alumno = {status: "true", alumno: "true"};
     $scope.curPage = 0;
@@ -20,8 +15,23 @@ app.controller('studentsCtrl', function($scope, $http, $rootScope, $timeout, Web
     init();
     
     function init() {
-        WebApiFactory.getStudents(true).then(function(data){
-           console.log(data) 
+        var columns = [
+                       {"data": "idAlumno"},
+                       {"data": "nombre"},
+                       {"data": "correo"},
+                       {"data": "telefono"},
+                       {"data": "lastModUser"},
+                       {"data": "statusStr"}];
+
+        WebApiFactory.getStudents(true).then(function(items) {
+            console.log(items)
+            $("#alumnos").DataTable({
+                "data": items,
+                "columns": columns,
+                "searching": true,
+                "paging": true,
+                "dom": '<"tableTitle"><"filterString">frtB<Tip>'
+            });
         });
         //$scope.activos = CatalogService.getActivos();
         //$scope.alumno = {status: $scope.activos[0].value, alumno: "true"};
