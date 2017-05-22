@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div>
+    <table id="alumnos" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>No. Alumno</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Fecha Nacimiento</th>
+                <th>Activo</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>No. Alumno</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Fecha Nacimiento</th>
+                <th>Activo</th>
+            </tr>
+        </tfoot>
+    </table>
+    <!--div class="searchContainer">
+        <input type="text" ng-model="searchAlumno" placeholder="Alumno..." id="search" class="search rounded"/>
+    </div>
+    <div id="messageContainer" ng-hide="showMessage" ng-class="{'errorDiv' : errorMessage, 'successDiv' : successMessage}">
+        {{generalMessage}} 
+    </div>
+    <form name="studentForm" ng-submit="persistStudent()">
+        <fieldset>
+            <table class="table tableWithForm">
+                <thead>
+                    <tr>
+                        <th style="display:none">
+                            <input type="number" ng-model="alumno.idAlumno"/>
+                        </th>
+                        <th>
+                            <input type="text" ng-model="alumno.codigo" placeholder="No. Alumno"  class="rounded" name="codigo" required pattern="[\d]*"/>
+                        </th>
+                        <th>
+                            <input type="text" ng-model="alumno.nombre" placeholder="Nombre"  class="rounded" name="nombre" required pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]*" title="Caracteres alfabéticos"/>
+                        </th>
+                        <th>
+                            <input type="email" ng-model="alumno.correo" placeholder="Correo" class="rounded" name="correo"/>
+                        </th>
+                        <th>
+                            <input type="tel" ng-model="alumno.telefono" placeholder="Teléfono"  class="rounded" name="telefono" pattern='\d{7,10}' title="Deben ser de 7 a 10 digitos"/>
+                        </th>
+                        <th>
+                            <select ng-model="alumno.status" name="status"  ng-options="activo.value as activo.status for activo in activos">
+                            </select>
+                        </th>
+                        <th >
+                            <input type="submit" class="addBtn" value="Guardar" name="add"/>
+
+                            <input type="reset" class="clearBtn" value="Limpiar" name="clear"/>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </fieldset>
+    </form>
+    <table class="table table-zebra table-horizontal table-highlight">
+        <thead>
+
+            <tr>
+                <th>No. Alumno</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Activo</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat='student in students | pagination: sizeOfPage * curPage | limitTo: sizeOfPage | filter: searchAlumno'>
+                <td style="display:none">{{student.idAlumno}}</td>
+                <td>{{student.codigo}}</td>
+                <td>{{student.nombre}}</td>
+                <td>{{student.correo}}</td>
+                <td>{{student.telefono}}</td>
+                <td>{{student.statusStr}}</td>
+                <td>
+                    <input type="button" value="Editar" name="edit" class="editBtn" ng-click="setStudent(student)"/>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <div class="pagination">
+                        <button type="button" ng-click="curPage=0"> l< </button>
+                        <button type="button" ng-disabled="curPage === 0" ng-click="curPage=curPage - 1"> < </button>
+                        Página {{curPage + 1}} de {{ numberOfPages() }}
+                        <button type="button" ng-disabled="curPage >= students.length/sizeOfPage - 1" ng-click="curPage=curPage + 1"> > </button>
+                        <button type="button" ng-click="curPage=numberOfPages()-1"> >l </button>
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    </table-->
+
+</div>
