@@ -130,6 +130,7 @@ nav > ul > li > div ul > li:hover > a {
 /* Contenido */
 #mainContainer {
     min-height: 600px;
+    margin-top: 3rem;
 }
 
 /* Footer */

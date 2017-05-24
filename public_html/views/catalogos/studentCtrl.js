@@ -5,45 +5,106 @@
  */
 
 app.controller('studentsCtrl', function($scope, $http, $rootScope, $timeout, WebApiFactory) {
-    $rootScope.showMenu = true;
-    $scope.alumno = {status: "true", alumno: "true"};
-    $scope.curPage = 0;
-    $scope.sizeOfPage = 10;
-    $scope.students = [];
-    $scope.extern = {};
+    var columns = [
+        {"data": "codigo"},
+        {"data": "nombre"},
+        {"data": "correo"},
+        {"data": "telefono"},
+        {"data": "lastModUser"},
+        {"data": "statusStr"}];
+    
+    function createTable (items) {
+        $('#alumnos tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+        });
+            
+        var editor = new $.fn.dataTable.Editor({
+            ajax: {
+                create: {
+                    type: 'POST',
+                    url:  Config.dataApiUrl + 'rest/student/persistStudent',
+                    data: function (d) {
+                        var student = d.data[0].student;
+                        student.status = "true";
+                        student.alumno = "true";
+                        student.fromStudent = "true";
+                        
+                        return angular.toJson(student);
+                    },
+                    headers: {
+                        "Content-Type": "application/json; charset=utf-8",
+                        "Accept": "application/json"
+                    }
+                },
+                edit: {
+                    type: 'POST',
+                    url:  Config.dataApiUrl + 'rest/student/persistStudent'
+                },
+                remove: {
+                    type: 'POST',
+                    url:  Config.dataApiUrl + 'rest/student/persistStudent'
+                }
+            },
+            table: "#alumnos",
+            fields: [ 
+                {
+                    label: "Código:",
+                    name: "student.codigo"
+                },
+                {
+                    label: "Nombre:",
+                    name: "student.nombre"
+                }, {
+                    label: "Correo:",
+                    name: "student.correo"
+                }, {
+                    label: "Teléfono:",
+                    name: "student.telefono"
+                }, {
+                    label: "Fecha Nacimiento:",
+                    name: "student.statusStr",
+                    type: "datetime"
+                }
+            ]
+        });
+            
+        var table = $("#alumnos").DataTable({
+            "data": items,
+            "columns": columns,
+            "searching": true,
+            "paging": true,
+            "responsive": true,
+            "scrollCollapse": true,
+            "dom": 'Bfrtip',
+            select: true,
+            buttons: [
+                { extend: "create", editor: editor },
+                { extend: "edit",   editor: editor },
+                { extend: "remove", editor: editor }
+            ]
+        });
+            
+        // Apply the search
+        table.columns().every( function () {
+            var that = this;
+
+            $( 'input', this.footer() ).on( 'keyup change', function () {
+                if ( that.search() !== this.value ) {
+                    that
+                        .search( this.value )
+                        .draw();
+                }
+            });
+        });
+    }
     
     init();
     
     function init() {
-        var columns = [
-                       {"data": "idAlumno"},
-                       {"data": "nombre"},
-                       {"data": "correo"},
-                       {"data": "telefono"},
-                       {"data": "lastModUser"},
-                       {"data": "statusStr"}];
-
         WebApiFactory.getStudents(true).then(function(items) {
-            console.log(items)
-            $("#alumnos").DataTable({
-                "data": items,
-                "columns": columns,
-                "searching": true,
-                "paging": true,
-                "dom": '<"tableTitle"><"filterString">frtB<Tip>'
-            });
+            createTable(items);
         });
-        //$scope.activos = CatalogService.getActivos();
-        //$scope.alumno = {status: $scope.activos[0].value, alumno: "true"};
-        
-        /*$http({
-            method: 'get',
-            url: 'rest/student/getStudents/',
-            params: {'alumnos' :true}
-        }).success(function(data, status, headers, config) {
-            $scope.students = data;
-        }).error(function(data, status, headers, config) {
-        });*/
     }
 
     $scope.setStudent = function(student) {
@@ -91,9 +152,5 @@ app.controller('studentsCtrl', function($scope, $http, $rootScope, $timeout, Web
                 alert("Contacte al adminsitrador");
             });
         }
-    };
-    
-    $scope.numberOfPages = function () {
-        return Math.ceil($scope.students.length / $scope.sizeOfPage);
     };
 });
