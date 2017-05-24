@@ -8,6 +8,10 @@ app.config(function ($routeProvider) {
                 templateUrl: 'views/catalogos/student.html',
                 controller: 'studentsCtrl'
             })
+            .when('/reporteAlumnosClase', {
+                templateUrl: 'views/reportes/reporteAlumnosClase.html',
+                controller: 'reporteAlumnosClase'
+            })
 });       
 app.run();//['$scope'], function($scope){
     
