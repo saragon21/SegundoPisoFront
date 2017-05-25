@@ -12,7 +12,7 @@ app.config(function ($routeProvider) {
                 templateUrl: 'views/reportes/reporteAlumnosClase.html',
                 controller: 'reporteAlumnosClase'
             })
-            });
+});       
 app.run();//['$scope'], function($scope){
     
 //});
