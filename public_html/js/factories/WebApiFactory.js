@@ -38,5 +38,27 @@ app.factory('WebApiFactory', function ($http) {
         });
     };
     
+    WebApiFactory.getStudent = function (idAlumno) {
+        return $http({
+            method: 'get',
+            params: {'idAlumno': idAlumno},
+            url: Config.dataApiUrl + 'rest/student/alumnoById/',
+            dataType: 'jsonp'
+        }).then(function (response) {
+            return response.data;
+        });
+    };
+    
+    WebApiFactory.getAttendenceByStudent = function (idAlumno) {
+        return $http({
+            method: 'get',
+            params: {'idAlumno': idAlumno},
+            url: Config.dataApiUrl + 'rest/attendence/getAttendence/byStudent/',
+            dataType: 'jsonp'
+        }).then(function (response) {
+            return response.data;
+        });
+    };
+    
     return WebApiFactory;
 });

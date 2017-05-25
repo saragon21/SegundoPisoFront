@@ -4,9 +4,16 @@
         Fecha Fin: <input type="text" id="fechaFin"  ng-model="$root.filter.fechaFin"  placeholder="dd/mm/yyyy"> 
         Clase: <select ng-model="$root.filter.clases" name="clase" ng-options="clase.id as clase.nombreClase for clase in clases"></select>
         <button ng-click="createReport()"> Consultar </button>
+        <div class="reportInputs">
+            <label class="highlight">Código:</label> {{student.codigo}}
+            <label class="highlight">Nombre:</label> {{student.nombre}}
+            <label class="highlight">Correo:</label> {{student.correo}}
+            <label class="highlight">Teléfono:</label> {{student.telefono}}
+        </div>
     </div>
+    
     <div>
-        <table id="reporteAlumnosClase" class="display compact" cellspacing="0" width="100%">
+        <table id="reporteClasesAlumno" class="display compact" cellspacing="0" width="100%">
             <thead>
                 <tr>
                     <th>Código</th>

@@ -4,10 +4,8 @@ body {
 
 .container {
     width: 90%;
-    //border: 1px solid  ;
     margin: auto;
     background-color: white;
-    //border-radius: 5px;
 }
 
 /* Logo */
@@ -26,8 +24,8 @@ body {
 
 nav {
     background-color: #fff;
-    border: 1px solid #dedede;
-    border-radius: 4px;
+    border-bottom: 1px solid #dedede;
+    border-top: 1px solid #dedede;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
     color: #888;
     display: block;
@@ -550,7 +548,6 @@ fieldset {
 input[type=number], input[type=text], input[type=date], input[type=checkbox], input[type=tel], input[type=email], select, label {
     margin-bottom: 7px;
     margin-left: 10px;
-    border-radius: 5px;
 }
 
 .formulario input[type=number] {
@@ -649,4 +646,9 @@ input[type=number], input[type=text], input[type=date], input[type=checkbox], in
 
 .reportInputs > input, .reportInputs > select{
     margin-right: 2rem;
+}
+
+.highlight {
+    background: yellow;
+    font-weight: bold;
 }

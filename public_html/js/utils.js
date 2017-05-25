@@ -31,6 +31,14 @@
         return copy;
     };
     
+    Utils.parseData = function(items) {
+        for (var index in items) {
+            items[index]["codigoLink"] = "<a href='#/reporte/clases/alumno/" + items[index].alumno.idAlumno + "'>" + items[index].alumno.codigo + "</a>";
+        }
+        
+        return items;
+    };
+    
     /**
      * Create a String with the status that are between from and to
      * parameters, including them.

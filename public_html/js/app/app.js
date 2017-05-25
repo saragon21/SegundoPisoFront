@@ -12,6 +12,10 @@ app.config(function ($routeProvider) {
                 templateUrl: 'views/reportes/reporteAlumnosClase.html',
                 controller: 'reporteAlumnosClase'
             })
+            .when('/reporte/clases/alumno/:idAlumno', {
+                templateUrl: 'views/reportes/reporteClasesAlumno.html',
+                controller: 'reporteClasesAlumno'
+            });
 });       
 app.run();//['$scope'], function($scope){
     

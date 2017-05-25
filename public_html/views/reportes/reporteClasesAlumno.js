@@ -1,9 +1,9 @@
-app.controller('reporteAlumnosClase', function($scope, $rootScope, WebApiFactory) {
+app.controller('reporteClasesAlumno', function($scope, $rootScope, $routeParams, WebApiFactory) {
     $scope.classes = [];
+    var idAlumno = $routeParams.idAlumno;
     var dd_mm_yyyy = "DD/MM/YYYY";
     var yyyy_mm_dd = "YYYY-MM-DD";
     var table;
-    $rootScope.filter = {fechaInicio: moment().format(dd_mm_yyyy), fechaFin: '', clases: 0};
     $("#fechaInicio").datepicker({
         changeMonth: true,
         changeYear: true,
@@ -23,16 +23,18 @@ app.controller('reporteAlumnosClase', function($scope, $rootScope, WebApiFactory
     
     function init() {
         WebApiFactory.getClasses(true).then(function (data) {
-            $scope.clases = data;
-            if (!Utils.isEmpty(data)) {
-                $scope.filter.clases = data[0].id;
-            }
-            
-            $scope.createReport(true);
+            WebApiFactory.getStudent(idAlumno).then(function(studentData) {
+                WebApiFactory.getAttendenceByStudent(idAlumno).then(function(attendenceData) {
+                    $scope.clases = data;
+                    $scope.student = studentData;
+                    $scope.createReport(true);
+                });
+            });
         });
     }
     
     $scope.createReport = function(newTable) {
+        console.log(newTable, !Utils.isTrue(newTable), table, !Utils.isEmpty(table))
         if (!Utils.isTrue(newTable) && !Utils.isEmpty(table)) {
             //Hide the current table.
             $('#reporteAlumnosClase').attr("style", "none");
@@ -63,7 +65,7 @@ app.controller('reporteAlumnosClase', function($scope, $rootScope, WebApiFactory
         $('#reporteAlumnosClase tfoot th').each( function () {
             var title = $(this).text();
             $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-        });
+        });console.log(items)
         
         table = $("#reporteAlumnosClase").DataTable({
             "data": items,
