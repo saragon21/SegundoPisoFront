@@ -5,10 +5,10 @@ app.controller('reporteAlumnosClase', function($scope, $http, $rootScope, $timeo
     var table;
     $scope.filter = {fechaInicio: moment().format(dd_mm_yyyy), fechaFin: '', clases: 0};
     var columns = [
-                    {"data": "codigo"},
-                    {"data": "nombre"},
-                    {"data": "correo"},
-                    {"data": "telefono"}];
+                    {"data": "alumno.codigo"},
+                    {"data": "alumno.nombre"},
+                    {"data": "alumno.correo"},
+                    {"data": "alumno.telefono"}];
     init();
     
     function init() {
@@ -50,12 +50,20 @@ app.controller('reporteAlumnosClase', function($scope, $http, $rootScope, $timeo
     };
     
     function createTable(items) {
+        $('#reporteAlumnosClase tfoot th').each( function () {
+            var title = $(this).text();
+            $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+        });console.log(items)
+        
         table = $("#reporteAlumnosClase").DataTable({
-                "data": items,
-                "columns": columns,
-                "searching": true,
-                "paging": true,
-                "dom": '<"tableTitle"><"filterString">frtB<Tip>'
-            });
+            "data": items,
+            "columns": columns,
+            "searching": true,
+            "paging": true,
+            "responsive": true,
+            "scrollCollapse": true,
+            "dom": 'frtip',
+            "select": true
+        });
     }
 });

@@ -8,7 +8,7 @@ app.config(function ($routeProvider) {
                 templateUrl: 'views/catalogos/student.html',
                 controller: 'studentsCtrl'
             })
-            .when('/reporteAlumnosClase', {
+            .when('/reporte/alumnos/clase', {
                 templateUrl: 'views/reportes/reporteAlumnosClase.html',
                 controller: 'reporteAlumnosClase'
             })
