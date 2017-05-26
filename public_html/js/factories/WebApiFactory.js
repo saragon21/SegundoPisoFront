@@ -49,11 +49,11 @@ app.factory('WebApiFactory', function ($http) {
         });
     };
     
-    WebApiFactory.getAttendenceByStudent = function (idAlumno) {
+    WebApiFactory.getAttendenceByStudent = function (params) {
         return $http({
-            method: 'get',
-            params: {'idAlumno': idAlumno},
-            url: Config.dataApiUrl + 'rest/attendence/getAttendence/byStudent/',
+            method: 'post',
+            data: params,
+            url: Config.dataApiUrl + 'rest/attendence/attendence/student/',
             dataType: 'jsonp'
         }).then(function (response) {
             return response.data;

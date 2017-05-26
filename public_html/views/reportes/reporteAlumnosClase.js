@@ -25,7 +25,7 @@ app.controller('reporteAlumnosClase', function($scope, $rootScope, WebApiFactory
         WebApiFactory.getClasses(true).then(function (data) {
             $scope.clases = data;
             if (!Utils.isEmpty(data)) {
-                $scope.filter.clases = data[0].id;
+                $rootScope.filter.clases = data[0].id;
             }
             
             $scope.createReport(true);
